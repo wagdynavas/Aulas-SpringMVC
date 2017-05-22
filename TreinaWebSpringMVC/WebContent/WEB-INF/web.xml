@@ -9,4 +9,20 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  <!-- O nome precisa ser o msm do arquivo xml que mapea o Spring beans -->
+  		<servlet-name>TreinaWebSpringMVC</servlet-name>
+  		<servlet-class>
+  				org.springframework.web.servlet.DispatcherServlet
+  		</servlet-class>
+  		<load-on-startup>1</load-on-startup><!-- carregará assim que aplicacao subir -->
+  		
+  </servlet>
+  
+  <!-- Indica oq o servlet irá interceptar -->
+  <servlet-mapping>
+  		<servlet-name>TreinaWebSpringMVC</servlet-name>
+  		<url-pattern>/</url-pattern><!-- barra significa todas as requisicoes -->
+  </servlet-mapping>
 </web-app>
