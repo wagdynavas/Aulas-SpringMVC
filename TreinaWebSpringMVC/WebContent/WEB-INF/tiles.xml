@@ -18,8 +18,29 @@
 		<put-attribute name="body" value="/WEB-INF/views/albuns/adicionar.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="albuns.exibir.tiles" extends="layout.tiles">
-		<put-attribute name="title" value="Albuns"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/albuns/exibir.jsp"></put-attribute>
+	<definition name="albuns.listar.tiles" extends="layout.tiles">
+		<put-attribute name="title" value="Lista de Albuns"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/albuns/listar.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="albuns.alterar.tiles" extends="layout.tiles">
+		<put-attribute name="title" value="Alterar Album"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/albuns/alterar.jsp"></put-attribute>
+	</definition>
+	<!-- Música -->
+	
+	<definition name="musicas.adicionar.tiles" extends="layout.tiles">
+		<put-attribute name="titles" value="Adicionar Musicas"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/musicas/adicionar.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="musicas.listar.tiles" extends="layout.tiles">
+		<put-attribute name="titles" value="Lista de Músicas"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/musicas/listar.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="musicas.alterar.tiles" extends="layout.tiles">
+		<put-attribute name="titles" value="Alterar Musicas"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/musicas/alterar.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

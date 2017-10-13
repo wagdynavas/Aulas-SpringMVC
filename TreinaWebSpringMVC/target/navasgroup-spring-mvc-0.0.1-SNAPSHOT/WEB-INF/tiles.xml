@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tiles-definition PUBLIC 
+<!DOCTYPE tiles-definitions PUBLIC 
 	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 	
 	<!-- Define o JSP responsável pelo layout -->
-<tiles-definition>
-	<definition name="layout.tiles" template="/WEB-INF/views/layouot/baselayout.jsp">
+<tiles-definitions>
+	<definition name="layout.tiles" template="/WEB-INF/views/layout/baselayout.jsp">
 		<put-attribute name="title" value=""></put-attribute>
 		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"></put-attribute>
 		<put-attribute name="body"></put-attribute>
@@ -13,13 +13,18 @@
 	</definition>
 	
 	<!-- Albuns -->
-	<definition name="album.adicionar.tiles" extends="layout.baselayout">
+	<definition name="albuns.adicionar.tiles" extends="layout.tiles">
 		<put-attribute name="title" value="Adicionar Album"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/albuns/adicionar.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="album.exibir.tiles" extends="layout.baselayout">
-		<put-attribute name="title" value="Albuns"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/albuns/exibir.jsp"></put-attribute>
+	<definition name="albuns.listar.tiles" extends="layout.tiles">
+		<put-attribute name="title" value="Lista de Albuns"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/albuns/listar.jsp"></put-attribute>
 	</definition>
-</tiles-definition>
+	
+	<definition name="albuns.alterar.tiles" extends="layout.tiles">
+		<put-attribute name="title" value="Alterar Album"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/albuns/alterar.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>
