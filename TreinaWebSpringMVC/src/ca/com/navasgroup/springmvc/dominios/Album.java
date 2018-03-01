@@ -1,5 +1,6 @@
 package ca.com.navasgroup.springmvc.dominios;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -39,6 +40,10 @@ public class Album {
 
 	@OneToMany(mappedBy = "album", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = true)
 	private Set<Musica> musicas;
+	
+	public Album(){
+		this.musicas = new HashSet<Musica>();
+	}
 
 	public Long getId() {
 		return id;

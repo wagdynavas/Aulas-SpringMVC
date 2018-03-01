@@ -41,7 +41,8 @@ public class AlbunsController {
 	//A anotion @Valid valida o objeto marcado. As regras e validacao, foram todas feitas na propria classe Album
 	//BindingResult contem o resultado da validacao a ser aplicada dentro de Album
 	@RequestMapping(value = "/adicionar", method = RequestMethod.POST) 
-	public String adicionar(@ModelAttribute("album") @Valid Album novoAlbum, BindingResult result, Model model){
+	public String adicionar(@ModelAttribute("album") @Valid Album novoAlbum,
+			BindingResult result, Model model){
 		//Caso o cliente preencha algum campo incorretamete, volte para a pagida de adicionar album
 		if(result.hasErrors()){
 			return "albuns.adicionar.tiles";
