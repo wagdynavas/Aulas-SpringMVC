@@ -3,47 +3,50 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<c:url var="actionEditar" value="/musicas/alterar"></c:url>
-<h2>Editar Música "${musica.nome }"</h2><br/>
+<c:url var="actionEditar" value="/usuarios/alterar"></c:url>
+<h2>Editar Usuário "${usuario.username }"</h2>
+<br />
 <form:form action="${actionEditar }" method="post"
-	modelAttribute="musica">
-	
+	modelAttribute="usuario">
+
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
 				<label>id</label>
-				<form:input path="id" cssClass="form-control" readonly="true"/>
+				<form:input path="id" cssClass="form-control" readonly="true" />
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
 				<label>Nome</label>
-				<form:input path="nome" cssClass="form-control"/>
-				<form:errors path="nome" cssStyle="color: red"></form:errors> <!-- tag do spring que reposnsável por exibir  nossas mensagens de erro de validacao. -->
+				<form:input path="username" cssClass="form-control" />
+				<form:errors path="username" cssStyle="color: red"></form:errors>
+				<!-- tag do spring que reposnsável por exibir  nossas mensagens de erro de validacao. -->
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
-				<label>Data de criação</label>
-				<form:input path="dataDeCriacao" cssClass="form-control"/>
-				<form:errors path="dataDeCriacao" cssStyle="color: red"></form:errors> <!-- tag do spring que reposnsável por exibir  nossas mensagens de erro de validacao. -->
+				<label>Password</label>
+				<form:password path="password" cssClass="form-control" placeholder="******"/>
+				<form:errors path="password" cssStyle="color: red"></form:errors>
+				<!-- tag do spring que reposnsável por exibir  nossas mensagens de erro de validacao. -->
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
-				<label>Album</label>
-				<form:select path="album.id" cssClass="form-control">
-					<form:options items="${albuns }" itemLabel="nome"
-					itemValue="id"/>
+				<label>Role</label>
+				<form:select path="role" cssClass="form-control">
+					<option value="ROLE_ADMIN">Administrador</option>
+					<option value="ROLE_USER">Usuário comum</option>
 				</form:select>
 			</div>
 		</div>

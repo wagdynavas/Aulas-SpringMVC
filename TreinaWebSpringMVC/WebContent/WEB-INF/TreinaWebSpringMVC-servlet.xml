@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:sec="http://www.springframework.org/schema/security"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xmlns:tx="http://www.springframework.org/schema/tx"   
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
  	   	http://www.springframework.org/schema/beans
  	   	http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -44,16 +44,16 @@
 
 	<!-- Spring Data -->
 
-    <!-- Bean reponsável por fabricar as conexoes para o Hibernate, JPA e SpringData -->
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource"
+	<!-- Bean reponsável por fabricar as conexoes para o Hibernate, JPA e SpringData -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/treinawebspringmvc?useTimezone=true&amp;serverTimezone=UTC"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/treinawebspringmvc?useTimezone=true&amp;serverTimezone=UTC"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="313233"></property>
 	</bean>
-	
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
@@ -69,9 +69,8 @@
 			</props>
 		</property>
 	</bean>
-	
-	<bean id="transactionManager"
-		class="org.springframework.orm.jpa.JpaTransactionManager">
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>
 	<jpa:repositories base-package="ca.com.navasgroup.springmvc.repositorios"></jpa:repositories>
@@ -81,35 +80,41 @@
 
 	<mvc:resources location="/WEB-INF/resources/" mapping="/resources/**"></mvc:resources>
 	<!-- Spring Security -->
-	
-	<bean id="userDatailsService" 
+
+	<bean id="userDatailsService"
 		class="ca.com.navasgroup.springmvc.security.NavasGroupUserDetailsService">
-	
+
 	</bean>
 	<sec:http pattern="/resources/**" security="none"></sec:http>
 	<sec:http pattern="/home/login" security="none"></sec:http>
 	<sec:http use-expressions="true" auto-config="true">
-		<sec:intercept-url pattern="/**/adicionar" access="hasRole('ROLE_ADMIN')"/>
-		<sec:intercept-url pattern="/**/alterar/**" access="hasRole('ROLE_ADMIN')"/>
-		<sec:intercept-url pattern="/**/excluir/**" access="hasRole('ROLE_ADMIN')"/>
+		<sec:intercept-url pattern="/**/adicionar" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/**/alterar/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/**/excluir/**" access="hasRole('ROLE_ADMIN')" />
 		<sec:intercept-url pattern="/**" access="isAuthenticated()"></sec:intercept-url>
-		<sec:form-login
-			login-page="/home/login"
-			default-target-url="/home/bemvindo"
-			authentication-failure-url="/home/login"
-			username-parameter="username"
-			password-parameter="password"
-			
-		/>
-	<sec:logout logout-success-url="/home/login" invalidate-session="true"/>
-	<sec:csrf disabled="true"></sec:csrf>
+		<sec:form-login login-page="/home/login"
+			default-target-url="/home/bemvindo" authentication-failure-url="/home/login"
+			username-parameter="username" password-parameter="password" />
+		<sec:logout logout-success-url="/home/login"
+			invalidate-session="true" />
+		<sec:csrf disabled="true"></sec:csrf>
 	</sec:http>
 	<sec:authentication-manager>
-		<sec:authentication-provider user-service-ref="userDatailsService">
+		<sec:authentication-provider
+			user-service-ref="userDatailsService">
 			<sec:password-encoder hash="bcrypt"></sec:password-encoder>
 		</sec:authentication-provider>
 	</sec:authentication-manager>
-	
-	
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>loginMessage</value>
+			</list>
+		</property>
+	</bean>
+
+
 
 </beans>
