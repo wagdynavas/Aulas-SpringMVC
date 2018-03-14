@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <link href="../resources/css/login.css" rel="stylesheet" />
 <title>Albuns login</title>
@@ -17,6 +18,11 @@
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Nome" required autofocus>
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <c:if test="${not empty param.error}">
+                	<div class="alert alert-warning" role="alert">
+                		<p>Usuário ou senha inválidos!</p>
+                	</div>
+                </c:if>
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Lembrar de mim
